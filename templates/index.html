@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Cloud Smart Power Optimizer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ Smart Power Optimization System</h1>
+<p>Cloud-based appliance usage optimizer based on electricity tariff</p>
+
+<form action="/predict" method="post">
+
+<label>Appliance</label>
+<select name="appliance">
+<option>Air Conditioner</option>
+<option>Washing Machine</option>
+<option>Water Heater</option>
+<option>Iron</option>
+<option>Water Pump</option>
+</select>
+
+<label>Power (Watts)</label>
+<input type="number" name="power" required>
+
+<label>Usage Duration (Hours)</label>
+<input type="number" name="duration" required>
+
+<label>Time of Use (0–23 hour)</label>
+<input type="number" name="time" required>
+
+<button type="submit">Predict Cost</button>
+
+</form>
+
+{% if cost %}
+
+<div class="result">
+
+<h2>Prediction Result</h2>
+
+<p><strong>Appliance:</strong> {{appliance}}</p>
+<p><strong>Estimated Cost:</strong> ₹ {{cost}}</p>
+<p><strong>Tariff Type:</strong> {{tariff}}</p>
+<p><strong>Recommendation:</strong> {{suggestion}}</p>
+<p><strong>Possible Savings:</strong> ₹ {{savings}}</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
